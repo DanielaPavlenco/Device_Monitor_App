@@ -95,16 +95,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
+// Setarea culorii la toolbar-ului
     private fun setToolbarBackgroundColor() {
         val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         when (currentNightMode) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                // Light mode
+                // modul Light
                 toolbarLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorRealBackground))
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                // Dark mode
+                // Modul dark
                 toolbarLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorDarkBackground))
             }
         }
