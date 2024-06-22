@@ -24,7 +24,7 @@ class PerformanceBoosterFragment : Fragment() {
     ): View? {
         _binding = FragmentPerformanceBoosterBinding.inflate(inflater, container, false)
 
-        // Check and set the background drawable based on the dark mode setting
+        // Se verifica daca aplicatii de fundal sunt setatate pe fundal dark mode
         val uiModeManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         val isNightMode = uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
 
