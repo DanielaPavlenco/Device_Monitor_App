@@ -145,7 +145,7 @@ class NetworkFragment : Fragment() {
         Toast.makeText(requireContext(), "$settingName has been set", Toast.LENGTH_SHORT).show()
 
         coroutineScope.launch {
-            delay(1000) // Keep the color for 1 second
+            delay(1000) // Se mentine culoarea 1 secunda
             imageView.background = originalColor
         }
     }
@@ -243,7 +243,7 @@ class NetworkFragment : Fragment() {
                 updateFrequency()
                 updateSSID()
                 updateLineChart()
-                delay(5000) // Update every 5 seconds
+                delay(5000) // Se actualizeaza la fiecare 5 secunde
             }
         }
     }
