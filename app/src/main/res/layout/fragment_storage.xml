@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/storagebg"
+    android:background="@drawable/bg1"
+    tools:context=".StorageFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+            <!-- Total Storage -->
+            <TextView
+                android:id="@+id/textViewTotalStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Storage: 128 GB"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Used Storage -->
+            <TextView
+                android:id="@+id/textViewUsedStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Used Storage: 75 GB"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Free Storage -->
+            <TextView
+                android:id="@+id/textViewFreeStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Free Storage: 53 GB"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Storage Usage Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBarStorageUsage"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="10"
+                android:max="100"
+                android:layout_marginTop="20dp"
+                android:progressDrawable="@drawable/progressbar"/>
+
+            <!-- Storage Used Percentage -->
+            <TextView
+                android:id="@+id/textViewStoragePercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Used: 75%"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <!-- Storage Details Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/storageDetailsCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Apps Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_manage"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewAppsStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Apps: 30 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                    <!-- Media Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewMediaStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Media: 25 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                    <!-- Other Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_info_details"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewOtherStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Other: 20 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                    <!-- System Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_help"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewSystemStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="System: 15 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                    <!-- Cache Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_recent_history"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewCacheStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Cache: 10 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                    <!-- Documents Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_edit"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewDocumentsStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Documents: 5 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                    <!-- Downloads Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_save"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewDownloadsStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Downloads: 8 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                    <!-- Temporary Files Storage -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_delete"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/textViewTemporaryFilesStorage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Temporary Files: 3 GB"
+                            android:textSize="16sp"
+                            android:layout_marginStart="10dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Manage Storage Button -->
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

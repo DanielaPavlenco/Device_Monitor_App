@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Bright complement to the primary branding color. By default, this is the color applied
+             to framework controls (via colorControlActivated). -->
+    <attr format="color" name="colorAccent"/>
+    <attr format="color" name="colorOnSurface"/>
+    <attr format="reference" name="selectableItemBackground"/>
+</resources>

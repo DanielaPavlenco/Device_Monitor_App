@@ -1,0 +1,272 @@
+<resources>
+    <string name="app_name">Device Monitor</string>
+
+    <string name="choose_language">Alege Limba</string>
+    <string name="activate">Activează</string>
+    <string name="english">Engleză</string>
+    <string name="romanian">Română</string>
+    <string name="french">Franceză</string>
+    <string name="german">Germană</string>
+
+    <string name="university_name">Universitatea Politehnica Timișoara</string>
+    <string name="about_desc1">Creat de: Daniela Pavlenco</string>
+    <string name="about_desc2">Această aplicație a fost creată ca parte a tezei de licență a Danielei Pavlenco la Universitatea Politehnica Timișoara. Te ajută să monitorizezi și să gestionezi hardware-ul și software-ul dispozitivului tău Android, oferind funcții precum statistici despre utilizarea CPU, GPU și memorie, gestionarea setărilor de afișare, gestionarea aplicațiilor și optimizarea bateriei/performance-ului.\n\nÎn ultimele timpuri, multe funcții sunt eliminate din actualizările Android, conducând la mai puțin control asupra dispozitivelor deținute de utilizatori. Această aplicație a fost făcută pentru a demonstra posibilitățile chiar și în limitele actuale, oferindu-le utilizatorilor mai mult control asupra dispozitivelor și arătând ce se mai poate realiza.</string>
+
+    <string name="faq_question1">De ce a fost creată aplicația?</string>
+    <string name="faq_answer1">Într-o perioadă în care Google tot ia permisiuni legate de dispozitiv de la utilizatori cu fiecare actualizare Android, eu, dezvoltatorul, am decis că este momentul potrivit pentru a arăta capabilitățile de personalizare și control asupra dispozitivelor înainte ca acestea să fie inevitabil întrerupte în actualizările viitoare. Rootarea dispozitivului pare să fi devenit singura modalitate de a utiliza pe deplin majoritatea opțiunilor, iar anumite funcții care funcționau fără root au fost implementate în aplicație și pot fi utilizate cu telefoane mai vechi.</string>
+
+    <string name="faq_question2">Care este scopul acestei aplicații?</string>
+    <string name="faq_answer2">Această aplicație este concepută pentru a ajuta utilizatorii să monitorizeze și să gestioneze diverse aspecte ale hardware-ului și software-ului dispozitivului lor Android. Oferă statistici detaliate despre utilizarea CPU, GPU, rețea și memorie, permite personalizarea setărilor de afișare, gestionarea aplicațiilor și oferă instrumente pentru optimizarea setărilor de baterie și performanță.</string>
+
+    <string name="faq_question3">Pe ce telefoane a fost testată această aplicație în timpul dezvoltării?</string>
+    <string name="faq_answer3">Această aplicație a fost testată în principal pe un Samsung Galaxy S23 fără root și pe un Google Pixel 6 emulat cu root cu API Level 33. Rootarea a fost realizată folosind RootAVD + Magisk, pe care îl recomandăm tuturor utilizatorilor care doresc să testeze opțiunile root înainte de a încerca pe telefoane reale.</string>
+
+    <string name="faq_question4">Această aplicație necesită acces root?</string>
+    <string name="faq_answer4">Unele funcții ale acestei aplicații necesită acces root pentru a funcționa corect, cum ar fi ajustările avansate de performanță și anumite modificări la nivel de sistem. Cu toate acestea, multe funcții, precum monitorizarea și gestionarea de bază a aplicațiilor, nu necesită acces root.</string>
+
+    <string name="faq_question5">De ce există un terminal?</string>
+    <string name="faq_answer5">Funcționalitățile principale ale acestei aplicații sunt realizate prin comenzi trimise către runtime-ul sistemului de operare Android, terminalul este o modalitate perfectă de a testa comenzi din cadrul dispozitivului.</string>
+
+    <string name="faq_question6">Ce este permisiunea WRITE_SECURE_SETTINGS?</string>
+    <string name="faq_answer6">Permisiunea WRITE_SECURE_SETTINGS permite aplicațiilor să modifice setările de sistem securizate, cum ar fi activarea sau dezactivarea opțiunilor de dezvoltator, schimbarea setărilor de afișare și ajustarea configurațiilor de rețea. Această permisiune este foarte restricționată deoarece poate afecta comportamentul general și securitatea dispozitivului.</string>
+
+    <string name="faq_question7">Ce este ADB și cum îl folosesc?</string>
+    <string name="faq_answer7">ADB (Android Debug Bridge) este un instrument versatil de linie de comandă care îți permite să comunici cu dispozitivul tău Android de pe un computer. Facilitează diverse sarcini, cum ar fi instalarea și depanarea aplicațiilor, accesarea jurnalelor dispozitivului și rularea comenzilor shell. ADB este un instrument esențial pentru dezvoltatori și utilizatorii avansați care doresc să gestioneze dispozitivele mai eficient.</string>
+
+    <string name="faq_question8">Ce este accesul root și de ce am nevoie de el?</string>
+    <string name="faq_answer8">Accesul root este abilitatea de a obține privilegii administrative pe dispozitivul tău Android. Cu acces root, poți modifica fișierele de sistem, accesa zonele restricționate ale sistemului de operare și efectua acțiuni care nu sunt disponibile utilizatorilor obișnuiți. Aplicația noastră necesită acces root pentru funcțiile avansate, cum ar fi ajustările de performanță, modificările la nivel de sistem și anumite funcții de gestionare a aplicațiilor. Reține că rootarea dispozitivului poate anula garanția și poate prezenta riscuri de securitate. Asigură-te că înțelegi implicațiile înainte de a continua.</string>
+
+    <string name="faq_question9">Cum îmi rootez dispozitivul?</string>
+    <string name="faq_answer9">Rootarea dispozitivului implică deblocarea bootloader-ului și instalarea unui recovery personalizat, urmată de flash-uirea unui pachet root (cum ar fi Magisk sau SuperSU). Procesul variază între dispozitive, așa că este esențial să urmezi un ghid detaliat specific modelului dispozitivului tău. Fii precaut, deoarece pașii incorecți pot duce la pierderea datelor sau bricking-ul dispozitivului.</string>
+
+    <string name="keep_selected_mode_psm">Păstrează modul selectat în PSM</string>
+    <string name="default_refresh_rate_values">Valorile implicite ale ratei de reîmprospătare</string>
+    <string name="per_app_settings">Setări pe aplicație</string>
+    <string name="device_monitor">Monitor Dispozitiv</string>
+    <string name="premium_activated">Premium Activat</string>
+    <string name="latest_version">Ultima Versiune</string>
+    <string name="language_selection">Selecție Limbă</string>
+    <string name="about_app">Despre aplicație</string>
+    <string name="faqs">Întrebări frecvente</string>
+    <string name="xda_forum">Forum XDA</string>
+    <string name="support_development">Susține Dezvoltarea</string>
+    <string name="protect_battery_mod">Mod Protecție Baterie</string>
+    <string name="maximum_charge">Încărcare Maximă</string>
+    <string name="combined_bits_sec">Biti Combinati/Sec</string>
+    <string name="net_speed_indicator">Indicator Viteză Rețea</string>
+
+    <string name="battery_image_desc">Imagine Baterie</string>
+    <string name="next_arrow_desc">Săgeata Următoare</string>
+    <string name="previous_arrow_desc">Săgeata Anterioară</string>
+
+    <!-- CPU -->
+    <string name="cpuchart1">Performanță în Timp Real</string>
+    <string name="cpucores">Utilizare Core</string>
+    <string name="cputemp">Temperatura CPU</string>
+    <string name="cpufreq">Frecvență Curentă</string>
+    <string name="cpugov">Setări Governor</string>
+
+    <!-- GPU -->
+    <string name="gpuchart1">Performanță în Timp Real</string>
+    <string name="gpuchart2">Utilizare Memorie</string>
+    <string name="gputemp">Temperatura GPU</string>
+    <string name="gpufreq">Frecvență Curentă</string>
+
+    <!-- Battery -->
+    <string name="batstatus">Stare</string>
+    <string name="bathealth">Sănătate</string>
+    <string name="batcurrent">Curent</string>
+    <string name="battemp">Temperatură</string>
+    <string name="batimprov">Îmbunătățiri</string>
+    <string name="batoption1">Îmbunătățește Bateria</string>
+    <string name="batoption2">Flag Dispozitiv RAM Mic</string>
+    <string name="batoption3">Interval de Așteptare Doze (secunde)</string>
+    <string name="batoption4">Activează Modul Doze</string>
+    <string name="batoption5">Dezactivează Wi-Fi</string>
+    <string name="batoption6">Dezactivează Bluetooth</string>
+    <string name="batoption7">Dezactivează Sincronizarea</string>
+    <string name="batoption8">Activează Modul Întunecat</string>
+
+    <!-- Performance booster -->
+    <string name="perftitle">Îmbunătățitor Performanță</string>
+    <string name="perfsubtitle">Îmbunătățește performanța dispozitivului tău pentru jocuri și altele.</string>
+    <string name="perfgenperf">Performanță generală</string>
+    <string name="perfoption1">UI Fluid</string>
+    <string name="perfoption2">Derulare mai bună</string>
+    <string name="perfoption3">Deblocator FPS</string>
+    <string name="perflegacy">Legacy</string>
+    <string name="perfoption4">Tweak Performanță</string>
+    <string name="perfoption5">Îmbunătățește calitatea redării</string>
+    <string name="perfoption6">Utilizează Accelerare GPU</string>
+    <string name="perfoption7">Reduce întârzierea în apel</string>
+
+    <!-- Display options -->
+    <string name="displaytitle1">Ajustează Luminozitatea</string>
+    <string name="displaytitle2">Ajustează Rata de Reîmprospătare</string>
+    <string name="displaytitle3">Ajustează Rezoluția</string>
+    <string name="displaytitle4">Ajustează Dimensiunea Fontului</string>
+    <string name="displaytitle5">Corecție de Culoare</string>
+    <string name="displaytitle6">Mărire</string>
+    <string name="displayresenter">Introdu rezoluția (ex: 1080x1920)</string>
+    <string name="reset">Resetare</string>
+    <string name="apply">Aplică</string>
+    <string name="displaycolorcorr">Activează Corecția de Culoare</string>
+    <string name="displaymagnification">Activează Mărirea</string>
+
+    <!-- Memory options -->
+    <string name="memtitle1">Utilizare Curentă a Memoriei</string>
+    <string name="memtitle2">Memorie Disponibilă</string>
+    <string name="memtitle3">Memorie Cached</string>
+    <string name="memtitle4">Memorie Swap</string>
+    <string name="memtitle5">Buffere Memorie</string>
+    <string name="memtitle6">Memorie Activă/Inactivă</string>
+    <string name="memforce">Forțează Ștergerea Aplicațiilor de Fundal</string>
+    <string name="mempolite">Ștergerea Politicoasă a Aplicațiilor de Fundal</string>
+
+    <!-- Network options -->
+    <string name="networktitle1">Puterea Semnalului</string>
+    <string name="networktitle2">Viteza Conexiunii</string>
+    <string name="networktitle3">Utilizarea Datelor</string>
+    <string name="networktitle4">Adresa IP</string>
+    <string name="networktitle5">Frecvență</string>
+    <string name="networktitle6">SSID</string>
+    <string name="networkoption1">Inactiv</string>
+    <string name="networkoption2">Interval scanare supplicant</string>
+    <string name="networkoption3">Interval scanare framework</string>
+    <string name="networkoption4">Scanare întotdeauna activată</string>
+
+    <string name="terminalenter">Introduceți comanda</string>
+
+    <string name="seconds">Secunde</string>
+    <string name="cpu_overview">Prezentare Generală CPU</string>
+    <string name="power_saving">Economisire Energie</string>
+    <string name="balanced">Echilibrat</string>
+    <string name="performance">Performanță</string>
+
+    <string name="appbar_scrolling_view_behavior_local" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="warning">Avertisment!</string>
+    <string name="confirmation_message">Ești absolut sigur de ceea ce faci?</string>
+    <string name="cancelar">ANULARE</string>
+    <string name="disable">Dezactivează</string>
+    <string name="package_disabled">Pachetul a fost dezactivat</string>
+    <string name="package_uninstalled">Pachetul a fost dezinstalat</string>
+    <string name="uninstall">Dezinstalează</string>
+    <string name="reboot">REPORNEȘTE</string>
+    <string name="enable">Activează</string>
+    <string name="launch">Lansează</string>
+    <string name="storage">Stocare</string>
+    <string name="loading">Se încarcă…</string>
+    <string name="app_ops_sum">Gestionează operațiunile și permisiunile aplicațiilor</string>
+    <string name="clear_data">Șterge datele</string>
+    <string name="close">Închide</string>
+    <string name="failed">Eșuat</string>
+    <string name="error">Eroare</string>
+
+    <string name="health">Sănătate</string>
+    <string name="battery_status_charging">încarcă</string>
+    <string name="battery_status_not_charging">nu se încarcă</string>
+    <string name="battery_status_discharging">se descarcă</string>
+    <string name="battery_status_fully_charged">complet încărcat</string>
+    <string name="battery_health_healthy">sănătos</string>
+    <string name="battery_health_cold">rece</string>
+    <string name="battery_health_dead">mort</string>
+    <string name="battery_health_overheat">supraîncălzit</string>
+    <string name="battery_health_overvoltage">supra tensiune</string>
+    <string name="battery_health_failure">eșec nespecificat</string>
+    <string name="battery_connection_ac">Adaptor AC</string>
+    <string name="battery_connection_usb">USB</string>
+    <string name="battery_connection_wireless">încărcător wireless</string>
+    <string name="battery_connection_unplugged">deconectat</string>
+
+    <!-- Information popups -->
+    <string name="cpu_governor_title">Informații Governor CPU</string>
+    <string name="cpu_governor_content">Această secțiune îți permite să setezi governor-ul CPU. Governor-ul controlează scalarea frecvenței CPU-ului și poate afecta performanța și durata de viață a bateriei. Alege un governor din lista derulantă.</string>
+
+    <string name="improve_battery_title">Îmbunătățește Bateria</string>
+    <string name="improve_battery_content">Optimizează intervalul de scanare Wi-Fi, activează modul de economisire a energiei, dezactivează rapoartele de erori fără impact asupra performanței pentru a îmbunătăți durata de viață a bateriei.</string>
+
+    <string name="low_ram_title">Flag Dispozitiv RAM Mic</string>
+    <string name="low_ram_content">Această opțiune marchează dispozitivul ca unul cu RAM mic, dezactivând anumite funcții intensive de memorie (tintirea barei de stare, efectul de fundal al panoului de notificări etc.) care funcționează prost pe dispozitive cu memorie redusă.\n\nDacă este dezactivată, poate fi necesar să REPORNEȘTI pentru a aplica schimbările.</string>
+
+    <string name="doze_interval_title">Informații Interval Doze</string>
+    <string name="doze_interval_content">Intervalul de așteptare înainte de a intra în modul de inactivitate profundă</string>
+
+    <string name="doze_mode_title">Informații Mod Doze</string>
+    <string name="doze_mode_content">Modul Doze reduce consumul de baterie prin amânarea activităților CPU și rețea în fundal pentru aplicații atunci când dispozitivul nu este utilizat pentru perioade lungi de timp până la ferestrele de întreținere</string>
+
+    <string name="wifi_switch_title">Dezactivează Wi-Fi</string>
+    <string name="wifi_switch_content">Dezactivează și activează Wi-Fi-ul. Poate funcționa fără root pe versiunile mai vechi de Android</string>
+
+    <string name="bluetooth_switch_title">Dezactivează Bluetooth</string>
+    <string name="bluetooth_switch_content">Dezactivează și activează Bluetooth-ul. Poate funcționa fără root pe versiunile mai vechi de Android</string>
+
+    <string name="sync_switch_title">Dezactivează Sincronizarea</string>
+    <string name="sync_switch_content">Această funcție îți permite să activezi sau să dezactivezi sincronizarea pentru toate conturile de pe dispozitiv. Activarea sincronizării asigură actualizarea datelor, în timp ce dezactivarea sincronizării poate ajuta la economisirea bateriei.</string>
+
+    <string name="dark_mode_title">Mod Întunecat</string>
+    <string name="dark_mode_content">Această funcție îți permite să activezi sau să dezactivezi Modul Întunecat pe dispozitivul tău. Modul Întunecat reduce cantitatea de lumină emisă de ecranul dispozitivului menținând în același timp raporturile minime de contrast necesare pentru lizibilitate. Activarea Modul Întunecat poate ajuta la reducerea oboselii ochilor și la economisirea bateriei pe ecranele OLED.</string>
+
+    <string name="liquid_smooth_title">UI Fluid</string>
+    <string name="liquid_smooth_content">Optimizează scala de presiune a atingerii și durata animațiilor pentru îmbunătățirea elementelor interfeței utilizatorului.</string>
+
+    <string name="better_scrolling_title">Derulare mai bună</string>
+    <string name="better_scrolling_content">Îmbunătățește receptivitatea și viteza derulării</string>
+
+    <string name="fps_unlocker_title">Deblocator FPS</string>
+    <string name="fps_unlocker_content">Ajustează numărul minim de perioade de cadru video pe buffer swap pentru a preveni "tearing-ul" (când vezi jumătate dintr-un cadru și jumătate din altul)</string>
+
+    <string name="performance_tweak_title">Tweak Performanță</string>
+    <string name="performance_tweak_content">Activează modul de ajustare a performanței, reduce numărul de culori la 16bpp (16 biți per pixel) și optimizează viteza de "fling" (derulare lină) pentru o îmbunătățire generală cu impact minim asupra bateriei.</string>
+
+    <string name="rendering_quality_title">Îmbunătățește calitatea redării</string>
+    <string name="rendering_quality_content">Optimizează proprietățile de compoziție ale ecranului și activează modul de interfață suprapusă pentru o calitate mai bună a graficii.</string>
+
+    <string name="gpu_acceleration_title">Accelerare GPU</string>
+    <string name="gpu_acceleration_content">Activează interfața UI accelerată hardware, forțează compunerea ecranului de către GPU și dezactivează vsync-ul pentru o performanță mult mai bună cu costul bateriei.</string>
+
+    <string name="reduce_call_title">Întârziere în apel</string>
+    <string name="reduce_call_content">Reduce întârzierea la primirea sau încheierea unui apel</string>
+
+    <string name="color_correction_title">Corecție de culoare</string>
+    <string name="color_correction_content">Această funcție îți permite să activezi corecția de culoare pe dispozitivul tău. Opțiunile disponibile sunt:
+    \n- Monocromatic: Acest mod afișează întregul ecran în nuanțe de gri.
+    \n- Protanomalie: Acest mod este conceput pentru persoanele cu daltonism roșu-verde, afectând în special nuanțele de roșu.
+    \n- Deuteranomalie: Acest mod este conceput pentru persoanele cu daltonism roșu-verde, afectând în special nuanțele de verde.
+    \n- Tritanomalie: Acest mod este conceput pentru persoanele cu daltonism albastru-galben.
+
+\nActivarea corecției de culoare poate ajuta persoanele cu deficiențe de vedere a culorilor să vadă mai clar conținutul.</string>
+
+    <string name="magnification_title">Mărire</string>
+    <string name="magnification_content">Această funcție îți permite să activezi mărirea pe dispozitivul tău. Mărirea face mai ușor de citit și vizualizat conținutul prin mărirea unei părți a ecranului. Poți face zoom in și out prin triplă apăsare pe ecran sau utilizând alte gesturi de accesibilitate. Această funcție este deosebit de utilă pentru persoanele cu vedere slabă, permițându-le să vadă mai bine detaliile de pe ecranul dispozitivului lor.</string>
+
+    <string name="idle_title">Inactiv</string>
+    <string name="idle_content">Intervalul în milisecunde după care Wi-Fi-ul este considerat inactiv.\nImplicit: 30000ms.</string>
+
+    <string name="supplicant_interval_title">Interval scanare supplicant</string>
+    <string name="supplicant_interval_content">Intervalul în milisecunde pentru scanare utilizat de supplicant-ul Wi-Fi.\nImplicit: 15000ms.</string>
+
+    <string name="framework_interval_title">Interval scanare framework</string>
+    <string name="framework_interval_content">Intervalul în milisecunde pentru a emite scanări de trezire atunci când Wi-Fi-ul trebuie să se conecteze.\nImplicit: 300000ms.</string>
+
+    <string name="switch_scan_title">Scanare Wi-Fi</string>
+    <string name="switch_scan_content">Permite scanările să fie activate chiar dacă Wi-Fi-ul este oprit pentru conectivitate</string>
+
+    <!-- Additional Strings for HomeFragment -->
+    <string name="device_dashboard">Tablou de Bord Management</string>
+    <string name="cpu_monitoring">Monitorizare CPU</string>
+    <string name="gpu_monitoring">Monitorizare GPU</string>
+    <string name="battery_management">Gestionare Baterie</string>
+    <string name="memory_management">Monitorizare Memorie</string>
+    <string name="storage_management">Monitorizare Stocare</string>
+    <string name="app_management">Gestionare Aplicații</string>
+    <string name="network_usage_stats">Statistici Utilizare Rețea</string>
+    <string name="task_automation">Terminal Debug</string>
+    <string name="performance_booster">Îmbunătățitor Performanță</string>
+    <string name="security_checks">Verificări Securitate</string>
+    <string name="custom_profiles">Profiluri Personalizate</string>
+    <string name="notification_manager">Manager Notificări</string>
+    <string name="refresh_rate_mods">Opțiuni de afișare</string>
+    <string name="extra">Extra</string>
+
+    <string name="next">URMĂTOR</string>
+</resources>

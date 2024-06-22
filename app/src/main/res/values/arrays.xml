@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="governor_options">
+        <item>interactive</item>
+        <item>ondemand</item>
+        <item>performance</item>
+        <item>powersave</item>
+        <item>userspace</item>
+    </string-array>
+
+    <string-array name="refresh_rate_options">
+        <item>60 Hz</item>
+        <item>90 Hz</item>
+        <item>120 Hz</item>
+    </string-array>
+
+    <string-array name="resolution_options">
+        <item>120x400</item>
+        <item>480x768</item>
+        <item>720x1280</item>
+        <item>1080x1920</item>
+        <item>1440x2560</item>
+        <item>2160x3840</item>
+    </string-array>
+
+
+</resources>

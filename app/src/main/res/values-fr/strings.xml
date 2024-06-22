@@ -1,0 +1,272 @@
+<resources>
+    <string name="app_name">Device Monitor</string>
+
+    <string name="choose_language">Choisir la langue</string>
+    <string name="activate">Activer</string>
+    <string name="english">Anglais</string>
+    <string name="romanian">Roumain</string>
+    <string name="french">Français</string>
+    <string name="german">Allemand</string>
+
+    <string name="university_name">Université Polytechnique de Timișoara</string>
+    <string name="about_desc1">Créé par : Daniela Pavlenco</string>
+    <string name="about_desc2">Cette application a été créée dans le cadre de la thèse de licence de Daniela Pavlenco à l\'Université Polytechnique de Timișoara. Elle vous aide à surveiller et à gérer le matériel et les logiciels de votre appareil Android, offrant des fonctionnalités telles que des statistiques d\'utilisation du CPU, du GPU et de la mémoire, la gestion des paramètres d\'affichage, la gestion des applications et l\'optimisation de la batterie et des performances.\n\nCes derniers temps, de nombreuses fonctionnalités sont retirées des utilisateurs à chaque mise à jour Android, ce qui conduit à un moindre contrôle des appareils qu\'ils possèdent. Cette application a été créée pour démontrer les possibilités même dans les limites actuelles, donnant aux utilisateurs plus de contrôle sur leurs appareils et montrant ce qui peut encore être réalisé.</string>
+
+    <string name="faq_question1">Pourquoi cette application a-t-elle été créée?</string>
+    <string name="faq_answer1">À une époque où Google continue de retirer des permissions liées aux appareils de ses utilisateurs avec chaque mise à jour Android, j\'ai, en tant que développeur, décidé qu\'il était temps de montrer les capacités de personnalisation et de contrôle des appareils avant que tout cela ne soit inévitablement supprimé dans les futures mises à jour. Rooter votre appareil semble être devenu la seule façon de pleinement utiliser la plupart des options, et certaines fonctionnalités qui fonctionnaient sans root ont été implémentées dans l\'application et peuvent être utilisées avec des téléphones plus anciens.</string>
+
+    <string name="faq_question2">Quel est le but de cette application?</string>
+    <string name="faq_answer2">Cette application est conçue pour aider les utilisateurs à surveiller et à gérer divers aspects du matériel et des logiciels de leur appareil Android. Elle fournit des statistiques détaillées sur l\'utilisation du CPU, du GPU, du réseau et de la mémoire, permet la personnalisation des paramètres d\'affichage, la gestion des applications et offre des outils pour optimiser les paramètres de batterie et de performance.</string>
+
+    <string name="faq_question3">Sur quels téléphones cette application a-t-elle été testée pendant le développement?</string>
+    <string name="faq_answer3">Cette application a été principalement testée sur un Samsung Galaxy S23 non rooté et un Google Pixel 6 émulé avec root avec API Level 33. Le root a été effectué en utilisant RootAVD + Magisk, que nous recommandons à tous les utilisateurs qui souhaitent essayer des options rootées avant de les essayer sur de vrais téléphones.</string>
+
+    <string name="faq_question4">Cette application nécessite-t-elle un accès root?</string>
+    <string name="faq_answer4">Certaines fonctionnalités de cette application nécessitent un accès root pour fonctionner correctement, telles que les ajustements avancés de performance et certaines modifications au niveau du système. Cependant, de nombreuses fonctionnalités, comme la surveillance et la gestion de base des applications, ne nécessitent pas d\'accès root.</string>
+
+    <string name="faq_question5">Pourquoi y a-t-il un terminal?</string>
+    <string name="faq_answer5">Les principales fonctionnalités de cette application sont réalisées à l\'aide de commandes envoyées au runtime du système d\'exploitation Android, le terminal est un moyen parfait de tester des commandes depuis l\'appareil.</string>
+
+    <string name="faq_question6">Qu\'est-ce que la permission WRITE_SECURE_SETTINGS?</string>
+    <string name="faq_answer6">La permission WRITE_SECURE_SETTINGS permet aux applications de modifier les paramètres système sécurisés, tels que l\'activation ou la désactivation des options de développeur, la modification des paramètres d\'affichage et l\'ajustement des configurations réseau. Cette permission est fortement restreinte car elle peut affecter le comportement général et la sécurité de l\'appareil.</string>
+
+    <string name="faq_question7">Qu\'est-ce que ADB et comment l\'utiliser?</string>
+    <string name="faq_answer7">ADB (Android Debug Bridge) est un outil en ligne de commande polyvalent qui vous permet de communiquer avec votre appareil Android depuis un ordinateur. Il facilite diverses tâches telles que l\'installation et le débogage des applications, l\'accès aux journaux de l\'appareil et l\'exécution de commandes shell. ADB est un outil essentiel pour les développeurs et les utilisateurs avancés qui souhaitent gérer leurs appareils plus efficacement.</string>
+
+    <string name="faq_question8">Qu\'est-ce que l\'accès root et pourquoi en ai-je besoin?</string>
+    <string name="faq_answer8">L\'accès root est la capacité d\'obtenir des privilèges administratifs sur votre appareil Android. Avec l\'accès root, vous pouvez modifier les fichiers système, accéder à des zones restreintes du système d\'exploitation et effectuer des actions qui ne sont pas disponibles pour les utilisateurs ordinaires. Notre application nécessite l\'accès root pour les fonctionnalités avancées telles que les ajustements de performance, les modifications au niveau du système et certaines fonctions de gestion des applications. Veuillez noter que rooter votre appareil peut annuler votre garantie et présenter des risques de sécurité. Assurez-vous de comprendre les implications avant de procéder.</string>
+
+    <string name="faq_question9">Comment rooter mon appareil?</string>
+    <string name="faq_answer9">Rooter votre appareil implique de déverrouiller le bootloader et d\'installer un recovery personnalisé, suivi du flash d\'un package root (comme Magisk ou SuperSU). Le processus varie selon les appareils, il est donc essentiel de suivre un guide détaillé spécifique à votre modèle d\'appareil. Soyez prudent, car des étapes incorrectes peuvent entraîner une perte de données ou un briquage de votre appareil.</string>
+
+    <string name="keep_selected_mode_psm">Conserver le mode sélectionné en PSM</string>
+    <string name="default_refresh_rate_values">Valeurs de taux de rafraîchissement par défaut</string>
+    <string name="per_app_settings">Paramètres par application</string>
+    <string name="device_monitor">Moniteur de l\'appareil</string>
+    <string name="premium_activated">Premium activé</string>
+    <string name="latest_version">Dernière version</string>
+    <string name="language_selection">Sélection de la langue</string>
+    <string name="about_app">À propos de l\'application</string>
+    <string name="faqs">FAQ</string>
+    <string name="xda_forum">Forum XDA</string>
+    <string name="support_development">Soutenir le développement</string>
+    <string name="protect_battery_mod">Mod de protection de la batterie</string>
+    <string name="maximum_charge">Charge maximale</string>
+    <string name="combined_bits_sec">Bits combinés/sec</string>
+    <string name="net_speed_indicator">Indicateur de vitesse du réseau</string>
+
+    <string name="battery_image_desc">Image de la batterie</string>
+    <string name="next_arrow_desc">Flèche suivante</string>
+    <string name="previous_arrow_desc">Flèche précédente</string>
+
+    <!-- CPU -->
+    <string name="cpuchart1">Performance en temps réel</string>
+    <string name="cpucores">Utilisation des cœurs</string>
+    <string name="cputemp">Température du CPU</string>
+    <string name="cpufreq">Fréquence actuelle</string>
+    <string name="cpugov">Paramètres du gouverneur</string>
+
+    <!-- GPU -->
+    <string name="gpuchart1">Performance en temps réel</string>
+    <string name="gpuchart2">Utilisation de la mémoire</string>
+    <string name="gputemp">Température du GPU</string>
+    <string name="gpufreq">Fréquence actuelle</string>
+
+    <!-- Battery -->
+    <string name="batstatus">Statut</string>
+    <string name="bathealth">Santé</string>
+    <string name="batcurrent">Courant</string>
+    <string name="battemp">Température</string>
+    <string name="batimprov">Améliorations</string>
+    <string name="batoption1">Améliorer la batterie</string>
+    <string name="batoption2">Flag appareil RAM faible</string>
+    <string name="batoption3">Intervalle d\'attente Doze (secondes)</string>
+    <string name="batoption4">Activer le mode Doze</string>
+    <string name="batoption5">Désactiver le Wi-Fi</string>
+    <string name="batoption6">Désactiver le Bluetooth</string>
+    <string name="batoption7">Désactiver la synchronisation</string>
+    <string name="batoption8">Activer le mode sombre</string>
+
+    <!-- Performance booster -->
+    <string name="perftitle">Booster de performance</string>
+    <string name="perfsubtitle">Améliorez la performance de votre appareil pour les jeux et plus encore.</string>
+    <string name="perfgenperf">Performance générale</string>
+    <string name="perfoption1">Interface utilisateur fluide</string>
+    <string name="perfoption2">Défilement amélioré</string>
+    <string name="perfoption3">Débloqueur FPS</string>
+    <string name="perflegacy">Legacy</string>
+    <string name="perfoption4">Optimisation des performances</string>
+    <string name="perfoption5">Améliorer la qualité de rendu</string>
+    <string name="perfoption6">Utiliser l\'accélération GPU</string>
+    <string name="perfoption7">Réduire le délai en appel</string>
+
+    <!-- Display options -->
+    <string name="displaytitle1">Ajuster la luminosité</string>
+    <string name="displaytitle2">Ajuster le taux de rafraîchissement</string>
+    <string name="displaytitle3">Ajuster la résolution</string>
+    <string name="displaytitle4">Ajuster la taille de la police</string>
+    <string name="displaytitle5">Correction des couleurs</string>
+    <string name="displaytitle6">Magnification</string>
+    <string name="displayresenter">Entrez la résolution (par ex. 1080x1920)</string>
+    <string name="reset">Réinitialiser</string>
+    <string name="apply">Appliquer</string>
+    <string name="displaycolorcorr">Activer la correction des couleurs</string>
+    <string name="displaymagnification">Activer la magnification</string>
+
+    <!-- Memory options -->
+    <string name="memtitle1">Utilisation actuelle de la mémoire</string>
+    <string name="memtitle2">Mémoire disponible</string>
+    <string name="memtitle3">Mémoire en cache</string>
+    <string name="memtitle4">Mémoire swap</string>
+    <string name="memtitle5">Tampons mémoire</string>
+    <string name="memtitle6">Mémoire active/inactive</string>
+    <string name="memforce">Forcer la fermeture des applications en arrière-plan</string>
+    <string name="mempolite">Fermeture polie des applications en arrière-plan</string>
+
+    <!-- Network options -->
+    <string name="networktitle1">Force du signal</string>
+    <string name="networktitle2">Vitesse de connexion</string>
+    <string name="networktitle3">Utilisation des données</string>
+    <string name="networktitle4">Adresse IP</string>
+    <string name="networktitle5">Fréquence</string>
+    <string name="networktitle6">SSID</string>
+    <string name="networkoption1">Inactif</string>
+    <string name="networkoption2">Intervalle de scan supplicant</string>
+    <string name="networkoption3">Intervalle de scan framework</string>
+    <string name="networkoption4">Scan toujours activé</string>
+
+    <string name="terminalenter">Entrer la commande</string>
+
+    <string name="seconds">Secondes</string>
+    <string name="cpu_overview">Aperçu du CPU</string>
+    <string name="power_saving">Économie d\'énergie</string>
+    <string name="balanced">Équilibré</string>
+    <string name="performance">Performance</string>
+
+    <string name="appbar_scrolling_view_behavior_local" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="warning">Avertissement!</string>
+    <string name="confirmation_message">Êtes-vous absolument sûr de ce que vous faites?</string>
+    <string name="cancelar">ANNULER</string>
+    <string name="disable">Désactiver</string>
+    <string name="package_disabled">Le package a été désactivé</string>
+    <string name="package_uninstalled">Le package a été désinstallé</string>
+    <string name="uninstall">Désinstaller</string>
+    <string name="reboot">REDÉMARRER</string>
+    <string name="enable">Activer</string>
+    <string name="launch">Lancer</string>
+    <string name="storage">Stockage</string>
+    <string name="loading">Chargement…</string>
+    <string name="app_ops_sum">Gérer les opérations et les permissions des applications</string>
+    <string name="clear_data">Effacer les données</string>
+    <string name="close">Fermer</string>
+    <string name="failed">Échec</string>
+    <string name="error">Erreur</string>
+
+    <string name="health">Santé</string>
+    <string name="battery_status_charging">en charge</string>
+    <string name="battery_status_not_charging">non en charge</string>
+    <string name="battery_status_discharging">décharge</string>
+    <string name="battery_status_fully_charged">complètement chargé</string>
+    <string name="battery_health_healthy">en bonne santé</string>
+    <string name="battery_health_cold">froid</string>
+    <string name="battery_health_dead">mort</string>
+    <string name="battery_health_overheat">surchauffé</string>
+    <string name="battery_health_overvoltage">surtension</string>
+    <string name="battery_health_failure">défaillance non spécifiée</string>
+    <string name="battery_connection_ac">Adaptateur secteur</string>
+    <string name="battery_connection_usb">USB</string>
+    <string name="battery_connection_wireless">Chargeur sans fil</string>
+    <string name="battery_connection_unplugged">débranché</string>
+
+    <!-- Information popups -->
+    <string name="cpu_governor_title">Informations sur le gouverneur du CPU</string>
+    <string name="cpu_governor_content">Cette section vous permet de définir le gouverneur du CPU. Le gouverneur contrôle la mise à l\'échelle de la fréquence du CPU et peut affecter les performances et la durée de vie de la batterie. Choisissez un gouverneur dans la liste déroulante.</string>
+
+    <string name="improve_battery_title">Améliorer la batterie</string>
+    <string name="improve_battery_content">Optimise l\'intervalle de scan Wi-Fi, active le mode d\'économie d\'énergie, désactive les rapports d\'erreurs sans impact sur les performances pour améliorer la durée de vie de la batterie.</string>
+
+    <string name="low_ram_title">Flag appareil RAM faible</string>
+    <string name="low_ram_content">Cette option marque l\'appareil comme un appareil à RAM faible, désactivant certaines fonctions gourmandes en mémoire (teinte de la barre d\'état, effet de fond du panneau de notifications, etc.) qui fonctionnent mal sur les appareils à faible mémoire.\n\nSi désactivée, un REDÉMARRAGE peut être nécessaire pour appliquer les modifications.</string>
+
+    <string name="doze_interval_title">Informations sur l\'intervalle Doze</string>
+    <string name="doze_interval_content">Intervalle d\'attente avant d\'entrer en mode de veille profonde</string>
+
+    <string name="doze_mode_title">Informations sur le mode Doze</string>
+    <string name="doze_mode_content">Le mode Doze réduit la consommation de la batterie en reportant les activités CPU et réseau en arrière-plan pour les applications lorsque l\'appareil n\'est pas utilisé pendant de longues périodes jusqu\'aux fenêtres de maintenance</string>
+
+    <string name="wifi_switch_title">Désactiver le Wi-Fi</string>
+    <string name="wifi_switch_content">Désactive et active le Wi-Fi. Peut fonctionner sans root sur les anciennes versions d\'Android</string>
+
+    <string name="bluetooth_switch_title">Désactiver le Bluetooth</string>
+    <string name="bluetooth_switch_content">Désactive et active le Bluetooth. Peut fonctionner sans root sur les anciennes versions d\'Android</string>
+
+    <string name="sync_switch_title">Désactiver la synchronisation</string>
+    <string name="sync_switch_content">Cette fonction vous permet d\'activer ou de désactiver la synchronisation pour tous les comptes sur l\'appareil. Activer la synchronisation garantit que les données sont à jour, tandis que désactiver la synchronisation peut aider à économiser la batterie.</string>
+
+    <string name="dark_mode_title">Mode sombre</string>
+    <string name="dark_mode_content">Cette fonction vous permet d\'activer ou de désactiver le mode sombre sur votre appareil. Le mode sombre réduit la quantité de lumière émise par l\'écran de votre appareil tout en maintenant les ratios de contraste minimaux requis pour la lisibilité. Activer le mode sombre peut aider à réduire la fatigue oculaire et à économiser la batterie sur les écrans OLED.</string>
+
+    <string name="liquid_smooth_title">Interface utilisateur fluide</string>
+    <string name="liquid_smooth_content">Optimise l\'échelle de pression tactile et la durée des animations pour améliorer les éléments de l\'interface utilisateur.</string>
+
+    <string name="better_scrolling_title">Défilement amélioré</string>
+    <string name="better_scrolling_content">Améliore la réactivité et la vitesse de défilement</string>
+
+    <string name="fps_unlocker_title">Débloqueur FPS</string>
+    <string name="fps_unlocker_content">Ajuste le nombre minimum de périodes de trame vidéo par échange de tampon pour éviter le "déchirement de l\'écran" (lorsque vous voyez la moitié d\'une trame et la moitié d\'une autre)</string>
+
+    <string name="performance_tweak_title">Optimisation des performances</string>
+    <string name="performance_tweak_content">Active le mode d\'optimisation des performances, réduit le nombre de couleurs à 16 bpp (16 bits par pixel) et optimise la vitesse de "fling" (défilement fluide) pour une amélioration générale avec un impact minimal sur la batterie.</string>
+
+    <string name="rendering_quality_title">Améliorer la qualité de rendu</string>
+    <string name="rendering_quality_content">Optimise les propriétés de composition de l\'écran et active le mode interface utilisateur en superposition pour une meilleure qualité graphique.</string>
+
+    <string name="gpu_acceleration_title">Accélération GPU</string>
+    <string name="gpu_acceleration_content">Active l\'interface utilisateur accélérée par le matériel, force la composition de l\'écran par le GPU et désactive le vsync pour une performance nettement meilleure au prix de la batterie.</string>
+
+    <string name="reduce_call_title">Délai en appel</string>
+    <string name="reduce_call_content">Réduit le délai pour recevoir ou terminer un appel</string>
+
+    <string name="color_correction_title">Correction des couleurs</string>
+    <string name="color_correction_content">Cette fonction vous permet d\'activer la correction des couleurs sur votre appareil. Les options disponibles sont :
+    \n- Monochromatique : Ce mode affiche tout l\'écran en nuances de gris.
+    \n- Protanomalie : Ce mode est conçu pour les personnes atteintes de daltonisme rouge-vert, affectant spécifiquement les teintes rouges.
+    \n- Deutéranomalie : Ce mode est conçu pour les personnes atteintes de daltonisme rouge-vert, affectant spécifiquement les teintes vertes.
+    \n- Tritanomalie : Ce mode est conçu pour les personnes atteintes de daltonisme bleu-jaune.
+
+\nL\'activation de la correction des couleurs peut aider les personnes ayant des déficiences visuelles à mieux voir le contenu.</string>
+
+    <string name="magnification_title">Magnification</string>
+    <string name="magnification_content">Cette fonction vous permet d\'activer la magnification sur votre appareil. La magnification facilite la lecture et la visualisation du contenu en agrandissant une partie de l\'écran. Vous pouvez zoomer et dézoomer en tapotant trois fois sur l\'écran ou en utilisant d\'autres gestes d\'accessibilité. Cette fonction est particulièrement utile pour les personnes malvoyantes, leur permettant de mieux voir les détails sur l\'écran de leur appareil.</string>
+
+    <string name="idle_title">Inactif</string>
+    <string name="idle_content">L\'intervalle en millisecondes après lequel le Wi-Fi est considéré comme inactif.\nPar défaut : 30000ms.</string>
+
+    <string name="supplicant_interval_title">Intervalle de scan supplicant</string>
+    <string name="supplicant_interval_content">L\'intervalle en millisecondes pour le scan utilisé par le supplicant Wi-Fi.\nPar défaut : 15000ms.</string>
+
+    <string name="framework_interval_title">Intervalle de scan framework</string>
+    <string name="framework_interval_content">L\'intervalle en millisecondes pour effectuer des scans de réveil lorsque le Wi-Fi doit se connecter.\nPar défaut : 300000ms.</string>
+
+    <string name="switch_scan_title">Scan Wi-Fi</string>
+    <string name="switch_scan_content">Permet aux scans d\'être activés même si le Wi-Fi est désactivé pour la connectivité</string>
+
+    <!-- Additional Strings for HomeFragment -->
+    <string name="device_dashboard">Tableau de bord de gestion</string>
+    <string name="cpu_monitoring">Surveillance du CPU</string>
+    <string name="gpu_monitoring">Surveillance du GPU</string>
+    <string name="battery_management">Gestion de la batterie</string>
+    <string name="memory_management">Surveillance de la mémoire</string>
+    <string name="storage_management">Surveillance du stockage</string>
+    <string name="app_management">Gestion des applications</string>
+    <string name="network_usage_stats">Statistiques d\'utilisation du réseau</string>
+    <string name="task_automation">Terminal de débogage</string>
+    <string name="performance_booster">Booster de performance</string>
+    <string name="security_checks">Contrôles de sécurité</string>
+    <string name="custom_profiles">Profils personnalisés</string>
+    <string name="notification_manager">Gestionnaire de notifications</string>
+    <string name="refresh_rate_mods">Options d\'affichage</string>
+    <string name="extra">Extra</string>
+
+    <string name="next">SUIVANT</string>
+</resources>

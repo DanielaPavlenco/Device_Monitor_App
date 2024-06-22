@@ -1,0 +1,244 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pic_one"
+    tools:context=".HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- First Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/cpu_one"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/CpuMonitoring"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CPU MONITORING"/>
+        </LinearLayout>
+
+        <!-- Second Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/gpu_one"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/GpuMonitoring"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GPU MONITORING"/>
+        </LinearLayout>
+
+        <!-- Third Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/battery_one"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/batteryManagement"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="BATTERY MANAGEMENT"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/performance"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/performanceBooster"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PERFORMANCE BOOSTER"/>
+        </LinearLayout>
+
+        <!-- Thirteenth Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/display"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/refreshRateMods"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DISPLAY OPTIONS"/>
+        </LinearLayout>
+
+        <!-- Fourth Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/memory_one"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/memoryManagement"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="MEMORY MANAGEMENT"/>
+        </LinearLayout>
+
+        <!-- Fifth Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/storage_one"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/storageManagement"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="STORAGE MANAGEMENT"/>
+        </LinearLayout>
+
+        <!-- Sixth Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/app_one"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/appManagement"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="APP MANAGEMENT"/>
+        </LinearLayout>
+
+        <!-- Seventh Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/network_one"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/networkUsageStats"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NETWORK USAGE STATS"/>
+        </LinearLayout>
+
+        <!-- Eighth Row: Image Left, Button Right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:src="@drawable/terminal1"
+                android:layout_gravity="center_vertical"/>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/taskAutomation"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DEBUG TERMINAL"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,60 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.DeviceMonitorApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary branding color -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <!-- Secondary branding color -->
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <!-- Customize your theme here -->
+        <item name="textColorSecondary">@color/textColorSecondary</item>
+        <item name="fontFamily">@font/font_family</item>
+        <!-- Ensure no default ActionBar is used -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="buttonStyle">@style/CustomButtonStyle</item>
+    </style>
+
+    <style name="Theme.DeviceMonitorApp.NoActionBar" parent="Theme.DeviceMonitorApp">
+        <!-- Primary branding color -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <!-- Secondary branding color -->
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <!-- Customize your theme here -->
+        <item name="textColorSecondary">@color/textColorSecondary</item>
+        <item name="fontFamily">@font/font_family</item>
+        <!-- Ensure no default ActionBar is used -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Set the status bar color to white -->
+        <item name="android:statusBarColor">@color/colorRealBackground</item>
+        <!-- Set light status bar icons -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="TransparentButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <!-- Definirea unui stil personalizat pentru butoane -->
+    <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_shiny</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/font_family</item>
+    </style>
+</resources>
