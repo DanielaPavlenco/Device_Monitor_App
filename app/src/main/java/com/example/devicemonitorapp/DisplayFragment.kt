@@ -35,6 +35,7 @@ import java.io.IOException
 
 class DisplayFragment : Fragment() {
 
+    //Variabilele pentru controalele UI
     private lateinit var sliderBrightness: Slider
     private lateinit var textViewCurrentBrightness: TextView
     private lateinit var spinnerRefreshRate: Spinner
@@ -58,6 +59,7 @@ class DisplayFragment : Fragment() {
     private lateinit var resetMagnificationButton: MaterialButton
     private lateinit var applyMagnificationButton: MaterialButton
 
+    //Valorile implicite pentru rezolutie, dimensiunile de font și marire
     private var defaultResolution: String = "1080x1920"  // Placeholder, will be set dynamically
     private var defaultFontSize: Float = 1.0f  // Placeholder, will be set dynamically
     private var defaultMagnificationScale: Float = 1.0f  // Placeholder, will be set dynamically
@@ -72,6 +74,8 @@ class DisplayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_display, container, false)
+
+        //Initializarea elementelor UI
         sliderBrightness = view.findViewById(R.id.sliderBrightness)
         textViewCurrentBrightness = view.findViewById(R.id.textViewCurrentBrightness)
         spinnerRefreshRate = view.findViewById(R.id.spinnerRefreshRate)
@@ -96,9 +100,11 @@ class DisplayFragment : Fragment() {
         applyMagnificationButton = view.findViewById(R.id.applyMagnificationButton)
 
 
+        //Verifica permisiunile necesare
         checkWriteSettingsPermission()
         fetchDisplayModes()
 
+        //Seteaza conroalele UI
         setupBrightnessControl()
         setupRefreshRateControl()
         setupResolutionControl()
@@ -106,6 +112,7 @@ class DisplayFragment : Fragment() {
         setupColorCorrectionControl()
         setupMagnificationControl()
 
+        //Seteaza butoanele de informatii
         view.findViewById<ImageButton>(R.id.infoColorCorrection).setOnClickListener {
             showInfoPopup(getString(R.string.color_correction_title),
                 getString(R.string.color_correction_content)
@@ -118,21 +125,22 @@ class DisplayFragment : Fragment() {
             )
         }
 
-        // Check and set the background drawable based on the dark mode setting
+        // Verifica si seteaza fundalul in functie de modul intunecat
         val uiModeManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         val isNightMode = uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
 
         val root = view.findViewById<ScrollView>(R.id.scrollViewRoot)
 
         if (isNightMode) {
-            root.setBackgroundResource(R.drawable.night2) // Replace with your night mode drawable
+            root.setBackgroundResource(R.drawable.night2) // Inlocuieste cu drawable-ul pentru modul dark
         } else {
-            root.setBackgroundResource(R.drawable.bg2) // Replace with your day mode drawable
+            root.setBackgroundResource(R.drawable.bg2) // Inlocuieste cu drawable-ul pentru modul zi
         }
 
         return view
     }
 
+    //Verifica permisiunea de a modifica setarile sistemului
     private fun checkWriteSettingsPermission() {
         if (!Settings.System.canWrite(requireContext())) {
             val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
@@ -141,18 +149,20 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Gestioneaza rezultatul cererii de permisiune
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == WRITE_SETTINGS_PERMISSION_REQUEST) {
             if (Settings.System.canWrite(requireContext())) {
-                // Permission granted, proceed with setting brightness
+                // Permisiune acordata, pote continua cu setarea luminozitatii
             } else {
-                // Permission not granted, show a message to the user
+                // Permisiune refuzata, afiseaza un mesaj utilizatorului
                 Toast.makeText(requireContext(), "Permission not granted. Cannot change settings.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    //Seteaza controlul luminozitatii
     private fun setupBrightnessControl() {
         val brightness = getScreenBrightness()
         sliderBrightness.value = brightness.toFloat()
@@ -168,6 +178,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza controlul ratei de refresh
     private fun setupRefreshRateControl() {
         val displayManager = requireContext().getSystemService(Context.DISPLAY_SERVICE) as android.hardware.display.DisplayManager
         val display = displayManager.getDisplay(android.view.Display.DEFAULT_DISPLAY)
@@ -186,11 +197,11 @@ class DisplayFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Do nothing
+                // Nu face nimic
             }
         }
 
-        // Set the highest refresh rate available when entering the page
+        // Seteaza cea mai mare rata de refresh disponibila candse incarca pagina
         if (supportedModes.isNotEmpty()) {
             val highestRefreshRate = supportedModes.last()
             spinnerRefreshRate.setSelection(supportedModes.indexOf(highestRefreshRate))
@@ -198,6 +209,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Afiseaza un popup de informatii
     private fun showInfoPopup(title: String, content: String) {
         AlertDialog.Builder(requireContext())
             .setTitle(title)
@@ -209,6 +221,7 @@ class DisplayFragment : Fragment() {
             .show()
     }
 
+    //Seteaza controlul rezolutiei
     private fun setupResolutionControl() {
         fetchAvailableResolutions { currentResolution ->
             defaultResolution = currentResolution  // Set the fetched resolution as the default
@@ -233,12 +246,13 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza rezolutia ecranului
     private fun setResolution(resolution: String) {
         val (width, height) = resolution.split("x").map { it.trim() }
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                // First, attempt to set the resolution without root
+                // Incearca sa seteze rezolutia fara root
                 try {
                     val process = Runtime.getRuntime().exec(arrayOf("sh", "-c", "wm size ${width}x${height}"))
                     process.waitFor()
@@ -280,6 +294,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Obtine rezolutiile disponibile
     private fun fetchAvailableResolutions(callback: (String) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -300,6 +315,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza controlul dimensiunii fontului
     private fun setupFontSizeControl() {
         textViewCurrentFontSize.text = "Current Font Size: $defaultFontSize"
         sliderFontSize.value = defaultFontSize
@@ -319,6 +335,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza controlul corecției de culoare
     private fun setupColorCorrectionControl() {
         val colorModes = listOf("Monochromatic", "Protanomaly", "Deuteranomaly", "Tritanomaly")
         val colorModeCodes = listOf(0, 11, 12, 13)
@@ -335,7 +352,7 @@ class DisplayFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Do nothing
+                // Nu face nimic
             }
         }
 
@@ -344,6 +361,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza controlul maririi ecranului
     private fun setupMagnificationControl() {
         switchMagnification.setOnCheckedChangeListener { _, isChecked ->
             setMagnificationEnabled(isChecked)
@@ -364,6 +382,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Activarea sau dezactivarea maririi ecranului
     private fun setMagnificationEnabled(enabled: Boolean) {
         try {
             val resolver: ContentResolver = requireContext().contentResolver
@@ -375,6 +394,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza scala de marire a ecranului
     private fun setMagnificationScale(scale: Float) {
         try {
             val resolver: ContentResolver = requireContext().contentResolver
@@ -386,22 +406,25 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Obtine luminozitatea ecranului
     private fun getScreenBrightness(): Int {
         return try {
             Settings.System.getInt(requireContext().contentResolver, Settings.System.SCREEN_BRIGHTNESS)
         } catch (e: Settings.SettingNotFoundException) {
             Log.e("displayFragment", "Screen brightness setting not found", e)
-            255 // Default to maximum brightness
+            255 // Default la luminozitatea maxima
         }
     }
 
+    //Seteaza luminozitatea ecranului
     private fun setScreenBrightness(brightness: Int) {
-        // Set the brightness mode to manual
+        // Seteaza modul de luminozitate la manual
         Settings.System.putInt(requireContext().contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
-        // Set the brightness level
+        // Seteaza nievlul de luminozitate
         Settings.System.putInt(requireContext().contentResolver, Settings.System.SCREEN_BRIGHTNESS, brightness)
     }
 
+    //Seteaza rata de refresh a ecranului
     private fun setRefreshRate(refreshRate: Int) {
         val displayManager = requireContext().getSystemService(Context.DISPLAY_SERVICE) as android.hardware.display.DisplayManager
         val display = displayManager.getDisplay(android.view.Display.DEFAULT_DISPLAY)
@@ -422,10 +445,11 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza dimensiunea fontului
     private fun setFontSize(fontSize: Float) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                // Use Settings.System to set font scale
+                // Foloseste Settings.System pentru a seta scala fontului
                 Settings.System.putFloat(requireContext().contentResolver, Settings.System.FONT_SCALE, fontSize)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(requireContext(), "Font size set to $fontSize", Toast.LENGTH_SHORT).show()
@@ -440,6 +464,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Seteaza modul de corectie a culorilor
     private fun setColorCorrectionMode(mode: Int) {
         try {
             val resolver: ContentResolver = requireContext().contentResolver
@@ -450,6 +475,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Activeaza sau dezactiveaza daltonizatorul
     private fun setDisplayDaltonizerEnabled(enabled: Boolean) {
         try {
             val resolver: ContentResolver = requireContext().contentResolver
@@ -461,6 +487,7 @@ class DisplayFragment : Fragment() {
         }
     }
 
+    //Obtine modurile de afisare disponibile
     private fun fetchDisplayModes() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
