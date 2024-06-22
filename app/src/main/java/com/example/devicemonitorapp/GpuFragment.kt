@@ -30,6 +30,7 @@ import java.io.RandomAccessFile
 
 class GpuFragment : Fragment() {
 
+    //Declaratoo pentru binding di handler
     private var _binding: FragmentGpuBinding? = null
     private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
@@ -46,21 +47,22 @@ class GpuFragment : Fragment() {
         _binding = FragmentGpuBinding.inflate(inflater, container, false)
 
 
-        // Check and set the background drawable based on the dark mode setting
+        // Verifica si seteaza fundalul in functie de modul intunecat
         val uiModeManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         val isNightMode = uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
 
         if (isNightMode) {
-            binding.root.setBackgroundResource(R.drawable.night2) // Replace with your night mode drawable
+            binding.root.setBackgroundResource(R.drawable.night2) // Inlocuieste cu drawable-ul pentru modul noapte
         } else {
-            binding.root.setBackgroundResource(R.drawable.bg2) // Replace with your day mode drawable
+            binding.root.setBackgroundResource(R.drawable.bg2) // Inlocuieste cu drawable-ul pentru modul zi
         }
 
-        // Start updating GPU info
+        // Porneste actualizarea informatiilor despre GPU
         updateGpuInfo()
         return binding.root
     }
 
+    //Functia actualizare a informatiilor despre GPU
     private fun updateGpuInfo() {
         handler.postDelayed({
             GlobalScope.launch(Dispatchers.IO) {
@@ -72,7 +74,7 @@ class GpuFragment : Fragment() {
                 val gpuGovernor = getGpuGovernor()
 
                 withContext(Dispatchers.Main) {
-                    // Ensure the fragment is still added to the activity
+                    // Verifica daca fragmentul este inca atasat la activitate
                     if (isAdded) {
                         binding.gpuModel.text = "GPU Model: $gpuModel"
                         binding.temperatureValue.text = "$gpuTemperature°C"
@@ -84,27 +86,30 @@ class GpuFragment : Fragment() {
                 }
             }
 
-            // Continue updating
+            // Continua actualizarea
             if (isAdded) {
                 updateGpuInfo()
             }
         }, updateInterval)
     }
 
+    //Obtine numele GPU-ului
     private suspend fun getGpuName(): String = withContext(Dispatchers.Default) {
         val gpuInfoHardware = Utils.runCommand("cat /sys/class/kgsl/kgsl-3d0/gpu_model", "").trim()
         return@withContext if (gpuInfoHardware.isEmpty()) Build.HARDWARE else gpuInfoHardware
     }
 
+    //Obtine modelul GPU-ului
     private suspend fun getGpuModel(): String = withContext(Dispatchers.Default) {
         // Implement a way to get the GPU model
         return@withContext "Qualcomm"
     }
 
+    //Obtine temperatura GPU-ului
     private fun getGpuTemperature(): Float {
         return try {
-            // Implement a way to get the GPU temperature
-            // For example, read from a file like /sys/class/thermal/thermal_zone1/temp
+            // Implementeaza o metoda pentru a obtine temperatura GPU
+            // De exemplu, citeste dintr-un fisier precum /sys/class/thermal/thermal_zone1/temp
             val temp = RandomAccessFile("/sys/class/thermal/thermal_zone1/temp", "r").use { it.readLine().toFloat() }
             temp / 1000.0f
         } catch (e: Exception) {
@@ -113,10 +118,11 @@ class GpuFragment : Fragment() {
         }
     }
 
+    //Obtine frecventa GPU-ului
     private fun getGpuFrequency(): Float {
         return try {
-            // Implement a way to get the GPU frequency
-            // For example, read from a file like /sys/class/kgsl/kgsl-3d0/devfreq/cur_freq
+            // Implementeaza o metoda pentru a obtine frecventa GPU
+            // De exemplu, citeste dintr-un fisier precum /sys/class/kgsl/kgsl-3d0/devfreq/cur_freq
             val freq = RandomAccessFile("/sys/class/kgsl/kgsl-3d0/devfreq/cur_freq", "r").use { it.readLine().toFloat() }
             freq / 1000.0f
         } catch (e: Exception) {
@@ -125,18 +131,19 @@ class GpuFragment : Fragment() {
         }
     }
 
+    //Obtine utilizarea GPU-ului
     private fun getGpuUsage(): Float {
         return try {
-            // Read from /sys/class/kgsl/kgsl-3d0/gpubusy which returns two values: busy time and total time
+            // Citeste din /sys/class/kgsl/kgsl-3d0/gpubusy which returns two values: busy time and total time
             RandomAccessFile("/sys/class/kgsl/kgsl-3d0/gpubusy", "r").use {
-                val line = it.readLine().trim() // Trim the line to remove leading/trailing whitespace
-                Log.d("GpuFragment", "gpubusy content: $line") // Print the line for debugging
+                val line = it.readLine().trim() // elimina spatiile de la inceput si sfarsit
+                Log.d("GpuFragment", "gpubusy content: $line") // Afiseaza linia pentru debugging
                 val parts = line.split("\\s+".toRegex())
-                Log.d("GpuFragment", "gpubusy parts: ${parts.joinToString()}") // Print the parts for debugging
+                Log.d("GpuFragment", "gpubusy parts: ${parts.joinToString()}") // Afiseaza partile pentru debugging
                 if (parts.size == 2) {
                     val busyTime = parts[0].toLongOrNull() ?: 0L
                     val totalTime = parts[1].toLongOrNull() ?: 0L
-                    Log.d("GpuFragment", "busyTime: $busyTime, totalTime: $totalTime") // Print the parsed values
+                    Log.d("GpuFragment", "busyTime: $busyTime, totalTime: $totalTime") // Afiseaza valorile parsate
                     if (totalTime > 0) {
                         (busyTime.toFloat() / totalTime) * 100
                     } else {
@@ -152,9 +159,10 @@ class GpuFragment : Fragment() {
         }
     }
 
+    //Obtine utilizarea memoriei GPU-ului
     private fun getGpuMemoryUsage(): Float {
         return try {
-            // Read memory information from /proc/meminfo
+            // Citeste informatiile despre memorie din  /proc/meminfo
             val file = File("/proc/meminfo")
             val reader = BufferedReader(FileReader(file))
             var gpuMemoryUsage: Float? = null
@@ -174,10 +182,11 @@ class GpuFragment : Fragment() {
         }
     }
 
+    //Obtine governator-ul GPU-ului
     private fun getGpuGovernor(): String {
         return try {
-            // Implement a way to get the GPU governor
-            // For example, read from a file like /sys/class/kgsl/kgsl-3d0/pwrscale
+            // Implementeaza o metoda pentru a obtine governator-ul GPU
+            // De exemplu, cisteste dintr-un fisier precum  /sys/class/kgsl/kgsl-3d0/pwrscale
             RandomAccessFile("/sys/class/kgsl/kgsl-3d0/pwrscale", "r").use { it.readLine() }
         } catch (e: Exception) {
             Log.e("GpuFragment", "Error reading GPU governor", e)
@@ -185,8 +194,9 @@ class GpuFragment : Fragment() {
         }
     }
 
+    //Actualizaeaza graficul utilizarii GPU-ului
     private fun updateGpuUsageChart(gpuUsageChart: LineChart, gpuUsage: Float) {
-        // Add GPU usage data to the chart if it is within a reasonable range
+        // Adauga datele despre utilizarea GPU-ului in grafic daca sunt in limite rezonabile
         if (gpuUsage in 0f..100f) {
             gpuUsageEntries.add(Entry(gpuUsageEntryCount.toFloat(), gpuUsage))
             gpuUsageEntryCount++
@@ -195,7 +205,7 @@ class GpuFragment : Fragment() {
             val lineData = LineData(dataSet)
             gpuUsageChart.data = lineData
             gpuUsageChart.description.text = "Percentage of usage"
-            gpuUsageChart.invalidate() // Refresh chart
+            gpuUsageChart.invalidate() // Reimprospateaza graficul
         } else {
             Log.e("GpuFragment", "Invalid GPU usage value: $gpuUsage")
         }
@@ -209,7 +219,7 @@ class GpuFragment : Fragment() {
         val lineData = LineData(dataSet)
         gpuMemoryChart.data = lineData
         gpuMemoryChart.description.text = "KB"
-        gpuMemoryChart.invalidate() // Refresh chart
+        gpuMemoryChart.invalidate() // Reimprospateaza graficul
     }
 
     override fun onDestroyView() {
