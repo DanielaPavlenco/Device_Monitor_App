@@ -32,6 +32,7 @@ import kotlin.math.roundToInt
 
 class BatteryFragment : Fragment() {
 
+    //Variabilele pentru legarea elementeolor de UI și manager-ul de baterie
     private var _binding: FragmentBatteryBinding? = null
     private val binding get() = _binding!!
     private val handler by lazy { Handler(Looper.getMainLooper()) }
@@ -50,14 +51,17 @@ class BatteryFragment : Fragment() {
         private const val REQUEST_CODE_BLUETOOTH = 2
     }
 
+    //Receiver pentru monitorizarea schimbarilor in starea bateriei
     private val batteryReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {
             val action = intent?.action ?: return
             if (action != Intent.ACTION_BATTERY_CHANGED) return
 
+            //Extrage și afiseaza temperatura bateriei
             val temp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0).toFloat() / 10
             binding.cardTemperatureValue.text = "$temp ºC"
 
+            //Extrage și afiseaza nivelul bateriei ca procentaj
             val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
             val level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
             val percentage = ((level / scale.toFloat()) * 100).roundToInt()
@@ -72,6 +76,7 @@ class BatteryFragment : Fragment() {
                 }
             )
 
+            //Determina și afiseaza tipul de conexiune al bateriei
             binding.cardStatusSubText.text = when (intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)) {
                 BatteryManager.BATTERY_PLUGGED_USB -> getString(R.string.battery_connection_usb)
                 BatteryManager.BATTERY_PLUGGED_AC -> getString(R.string.battery_connection_ac)
@@ -79,6 +84,7 @@ class BatteryFragment : Fragment() {
                 else -> getString(R.string.battery_connection_unplugged)
             }
 
+            //Determina și afiseaza starea de sanatate a bateriei
             binding.cardHealthValue.text = when (intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)) {
                 BatteryManager.BATTERY_HEALTH_GOOD -> getString(R.string.battery_health_healthy)
                 BatteryManager.BATTERY_HEALTH_COLD -> getString(R.string.battery_health_cold)
@@ -89,6 +95,7 @@ class BatteryFragment : Fragment() {
                 else -> getString(android.R.string.unknownName)
             }
 
+            //Afiseaza tehnologia bateriei și tensiunea curenta
             binding.cardHealthSubText.text = intent.extras?.getString(BatteryManager.EXTRA_TECHNOLOGY) ?: ""
 
             val voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
@@ -96,6 +103,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Runnable pentru actualizarea curentului bateriei la fiecare 2 secunde
     private val getCurrentRunnable = object : Runnable {
         override fun run() {
             lifecycleScope.launch {
@@ -109,6 +117,7 @@ class BatteryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //Initializarea binding-ului si seteaza actiunile pentr butoanele de informare
         _binding = FragmentBatteryBinding.inflate(inflater, container, false)
         binding.infoImproveBattery.setOnClickListener {
             showInfoPopup(getString(R.string.improve_battery_title),
@@ -156,9 +165,9 @@ class BatteryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Initializarea switch-ului pentru modul intunecat si setarea fundalului
         switchDarkMode = binding.switchDarkMode // Initialize the dark mode switch from your layout
 
-        // Check and set the background drawable based on the dark mode setting
         val uiModeManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         val isNightMode = uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
 
@@ -170,6 +179,7 @@ class BatteryFragment : Fragment() {
 
         setupDarkModeControl()
 
+        //Seteaza actiunile pentru switch-urile de optimizare a bateriei, modul Doze, si alte setari
         binding.improveBattery.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 optimizeBatterySettings()
@@ -223,6 +233,7 @@ class BatteryFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        //Inregistreaza receiver-ul pentru monitorizarea starii bateriei și porneste rennable-ul pentru curentul bateriei
         IntentFilter().apply {
             addAction(Intent.ACTION_BATTERY_CHANGED)
             requireContext().registerReceiver(batteryReceiver, this)
@@ -236,6 +247,7 @@ class BatteryFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
+        //Incetarea inregistrarii receiver-ului și porneste runnable-ul
         try {
             handler.removeCallbacks(getCurrentRunnable)
             requireContext().unregisterReceiver(batteryReceiver)
@@ -249,6 +261,7 @@ class BatteryFragment : Fragment() {
         _binding = null
     }
 
+    //Metoda sesoendata pentru obtinerea curentului bateriei
     private suspend fun getCurrent() {
         if (!isAdded) return
 
@@ -265,6 +278,7 @@ class BatteryFragment : Fragment() {
     }
 
 
+    //Afiseaza un popup de informatii
     private fun showInfoPopup(title: String, content: String) {
         AlertDialog.Builder(requireContext())
             .setTitle(title)
@@ -276,6 +290,7 @@ class BatteryFragment : Fragment() {
             .show()
     }
 
+    //Optimizeaza setarile bateriei
     private fun optimizeBatterySettings() {
         lifecycleScope.launch(Dispatchers.IO) {
             // Optimize Wi-Fi Scan Interval
@@ -288,9 +303,9 @@ class BatteryFragment : Fragment() {
                 Log.e("BatteryFragment", "Failed to optimize Wi-Fi scan interval", e)
             }
 
-            // Enable Power Saving Mode
+            // Activeaza modul de economisire a energiei
             try {
-                // First attempt without root
+                // Prima incercare fara root
                 try {
                     val process = Runtime.getRuntime().exec("settings put global low_power 1")
                     process.waitFor()
@@ -301,7 +316,7 @@ class BatteryFragment : Fragment() {
                     }
                 } catch (e: IOException) {
                     Log.e("BatteryFragment", "Failed to enable power saving mode without root, trying with root", e)
-                    // Attempt with root
+                    // Incercare cu root
                     val suProcess = Runtime.getRuntime().exec("su")
                     val os = DataOutputStream(suProcess.outputStream)
                     os.writeBytes("settings put global low_power 1\n")
@@ -318,9 +333,9 @@ class BatteryFragment : Fragment() {
                 Log.e("BatteryFragment", "Failed to enable power saving mode", e)
             }
 
-            // Disable Error Reports
+            // Dezactivează rapoartele de eroare
             try {
-                // First attempt without root
+                // Prima incercare fara root
                 try {
                     val process = Runtime.getRuntime().exec("settings put global bugreport_in_power_menu 0")
                     process.waitFor()
@@ -331,7 +346,7 @@ class BatteryFragment : Fragment() {
                     }
                 } catch (e: IOException) {
                     Log.e("BatteryFragment", "Failed to disable error reports without root, trying with root", e)
-                    // Attempt with root
+                    // Incercare cu root
                     val suProcess = Runtime.getRuntime().exec("su")
                     val os = DataOutputStream(suProcess.outputStream)
                     os.writeBytes("settings put global bugreport_in_power_menu 0\n")
@@ -350,6 +365,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Reseteaza setarile bateriei la valorile implicite
     private fun resetBatterySettings() {
         lifecycleScope.launch(Dispatchers.IO) {
             // Reset Wi-Fi Scan Interval
@@ -362,9 +378,9 @@ class BatteryFragment : Fragment() {
                 Log.e("BatteryFragment", "Failed to reset Wi-Fi scan interval", e)
             }
 
-            // Disable Power Saving Mode
+            // Dezactiveaza modul de economisire a energiei
             try {
-                // First attempt without root
+                // Prima incercare fara root
                 try {
                     val process = Runtime.getRuntime().exec("settings put global low_power 0")
                     process.waitFor()
@@ -375,7 +391,7 @@ class BatteryFragment : Fragment() {
                     }
                 } catch (e: IOException) {
                     Log.e("BatteryFragment", "Failed to disable power saving mode without root, trying with root", e)
-                    // Attempt with root
+                    // Incercare cu root
                     val suProcess = Runtime.getRuntime().exec("su")
                     val os = DataOutputStream(suProcess.outputStream)
                     os.writeBytes("settings put global low_power 0\n")
@@ -392,9 +408,9 @@ class BatteryFragment : Fragment() {
                 Log.e("BatteryFragment", "Failed to disable power saving mode", e)
             }
 
-            // Enable Error Reports
+            // Activeaza rapoartele de eroare
             try {
-                // First attempt without root
+                // Prima incercare fara root
                 try {
                     val process = Runtime.getRuntime().exec("settings put global bugreport_in_power_menu 1")
                     process.waitFor()
@@ -405,7 +421,7 @@ class BatteryFragment : Fragment() {
                     }
                 } catch (e: IOException) {
                     Log.e("BatteryFragment", "Failed to enable error reports without root, trying with root", e)
-                    // Attempt with root
+                    // Incercare cu root
                     val suProcess = Runtime.getRuntime().exec("su")
                     val os = DataOutputStream(suProcess.outputStream)
                     os.writeBytes("settings put global bugreport_in_power_menu 1\n")
@@ -424,6 +440,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Activeaza modul Doze
     private fun enableDozeMode() {
         val dozeInterval = binding.dozeInterval.text.toString().toIntOrNull() ?: 0
         lifecycleScope.launch(Dispatchers.IO) {
@@ -449,6 +466,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Dezactiveaza modul Doze
     private fun disableDozeMode() {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -472,10 +490,11 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Seteaza Flag-ul pentru dispozitiv Low RAM
     private fun setLowRamDeviceFlag(isLowRam: Boolean) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                // First attempt without root
+                // Prima incercare fara root
                 try {
                     val process = if (isLowRam) {
                         Runtime.getRuntime().exec("settings put global low_ram true")
@@ -490,7 +509,7 @@ class BatteryFragment : Fragment() {
                     }
                 } catch (e: IOException) {
                     Log.e("BatteryFragment", "Failed to set Low RAM device flag without root, trying with root", e)
-                    // Attempt with root
+                    // Incercare cu root
                     val suProcess = Runtime.getRuntime().exec("su")
                     val os = DataOutputStream(suProcess.outputStream)
                     if (isLowRam) {
@@ -513,6 +532,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Activarea sau dezactivarea WI-FI
     private fun setWifiEnabled(enabled: Boolean) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -521,7 +541,7 @@ class BatteryFragment : Fragment() {
                 Log.d("BatteryFragment", "Wi-Fi ${if (enabled) "enabled" else "disabled"}")
             } catch (e: Exception) {
                 Log.e("BatteryFragment", "Failed to ${if (enabled) "enable" else "disable"} Wi-Fi", e)
-                // Attempt with root if standard method fails
+                // Incercare cu root daca metoda standard esueaza
                 try {
                     val suProcess = Runtime.getRuntime().exec("su")
                     val os = DataOutputStream(suProcess.outputStream)
@@ -537,6 +557,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Activeaza sau dezactiveaza Bluetooth
     private fun setBluetoothEnabled(enabled: Boolean) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -590,6 +611,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Activeaza sau dezactiveaza sincronizarea
     private fun setSyncEnabled(enabled: Boolean) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -603,9 +625,9 @@ class BatteryFragment : Fragment() {
             }
         }
     }
-
+    //Configurarewa controlului pentru modul intunecat
     private fun setupDarkModeControl() {
-        // Check the current system dark mode setting
+        // Verifica setarea actuala pentru modul intunecat
         val isDarkModeEnabled = isDarkModeEnabled()
         switchDarkMode.isChecked = isDarkModeEnabled
 
@@ -614,6 +636,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Activeaza sau dezactiveaza modul intunecat
     private fun setDarkMode(enabled: Boolean) {
         val command = if (enabled) "cmd uimode night yes" else "cmd uimode night no"
         try {
@@ -636,6 +659,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Verifica daca modul intunecat este activat
     private fun isDarkModeEnabled(): Boolean {
         return try {
             val process = Runtime.getRuntime().exec(arrayOf("cmd", "uimode", "night"))
@@ -648,6 +672,7 @@ class BatteryFragment : Fragment() {
         }
     }
 
+    //Gestionearea permisiunilor pentru schimbarea starii Wi-Fi și Bluetooth
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
