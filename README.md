@@ -25,7 +25,7 @@ Această aplicație ajută utilizatorii să monitorizeze și să gestioneze perf
 
 Pentru a clona depozitul de pe GitHub, deschide un terminal și rulează următoarele comenzi:
 
-git clone 
+git clone https://github.com/DanielaPavlenco/Device_Monitor_App.git
 
 cd DeviceMonitorApp
 
