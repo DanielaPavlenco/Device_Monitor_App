@@ -241,44 +241,5 @@ class StorageFragment : Fragment() {
         }
     }
 
-//    private fun fetchFilesystemDetails() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            try {
-//                val process = Runtime.getRuntime().exec("du -b /storage/emulated/0/DCIM")
-//                process.waitFor()
-//                val bufferedReader = BufferedReader(InputStreamReader(process.inputStream))
-//                val output = StringBuilder()
-//                var line: String?
-//                val directorySizes = mutableMapOf<String, Long>()
-//
-//                while (bufferedReader.readLine().also { line = it } != null) {
-//                    output.append(line).append("\n")
-//
-//                    val tokens = line!!.split("\\s+".toRegex()).toTypedArray()
-//                    if (tokens.size == 2) {
-//                        val size = tokens[0].toLong()
-//                        val path = tokens[1]
-//
-//                        if (path == "/storage/emulated/0/DCIM" ||
-//                            path == "/storage/emulated/0/MOVIES" ||
-//                            path == "/storage/emulated/0/MUSIC" ||
-//                            path == "/storage/emulated/0/PICTURES") {
-//                            directorySizes[path] = size * 2420
-//                        }
-//                    }
-//                }
-//
-//                withContext(Dispatchers.Main) {
-//                    println("Directory sizes:\n$output")
-//                    directorySizes.forEach { (path, size) ->
-//                        println("Size of $path: ${convertBytesToReadableFormat(size)}")
-//                    }
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//        }
-//    }
-
 
 }
