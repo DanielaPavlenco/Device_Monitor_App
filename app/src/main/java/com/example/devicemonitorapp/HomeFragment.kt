@@ -17,6 +17,7 @@ import com.example.devicemonitorapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
+    //Variabila pentru binding-ul layout-ului
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //influenteaza layout-ul folosind binding-ul generat
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -31,7 +33,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Check and set the background drawable based on the dark mode setting
+        // Verifica si seteaza fundalul in functie de modul intunecat
         val uiModeManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         val isNightMode = uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
 
@@ -41,7 +43,7 @@ class HomeFragment : Fragment() {
             binding.root.setBackgroundResource(R.drawable.pic_one) // Replace with your day mode drawable
         }
 
-        // Apply gradient to buttons
+        // Aplica gradiebt pe textul butoanelor
         applyGradientToText(binding.CpuMonitoring, R.color.orange, R.color.green)
         applyGradientToText(binding.GpuMonitoring, R.color.green, R.color.orange)
         applyGradientToText(binding.batteryManagement, R.color.orange, R.color.green)
@@ -53,7 +55,7 @@ class HomeFragment : Fragment() {
         applyGradientToText(binding.taskAutomation, R.color.green, R.color.orange)
         applyGradientToText(binding.refreshRateMods, R.color.orange, R.color.green)
 
-        // Set text for buttons
+        // Seteaza textul pentru butoane
         binding.CpuMonitoring.text = getString(R.string.cpu_monitoring)
         binding.GpuMonitoring.text = getString(R.string.gpu_monitoring)
         binding.batteryManagement.text = getString(R.string.battery_management)
@@ -64,7 +66,7 @@ class HomeFragment : Fragment() {
         binding.taskAutomation.text = getString(R.string.task_automation)
         binding.refreshRateMods.text = getString(R.string.refresh_rate_mods)
 
-        // Set click listeners for buttons
+        // Seteaza click listeners pentru butoane
         binding.CpuMonitoring.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_CpuFragment)
         }
@@ -98,6 +100,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    //Aplica gradient pe textul butoanelor
     private fun applyGradientToText(button: NeumorphButton, startColorResId: Int, endColorResId: Int) {
         val paint = button.paint
         val width = paint.measureText(button.text.toString())
@@ -109,6 +112,7 @@ class HomeFragment : Fragment() {
         button.paint.shader = textShader
     }
 
+    //Curata binding-ul cand view-ul este distrus pentru a preveni scurgerile de memorie
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
