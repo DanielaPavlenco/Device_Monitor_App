@@ -77,12 +77,12 @@ class TerminalFragment : Fragment() {
                 val newOutput = "> $command\n$output$errorOutput"
                 terminalOutput.text = newOutput + terminalOutput.text.toString()
 
-                // Scroll to the top
+                // Scroll
                 scrollView.post {
                     scrollView.fullScroll(View.FOCUS_UP)
                 }
 
-                // Clear the command input
+                // Clear la comanda de input
                 commandInput.setText("")
 
                 process.waitFor()
