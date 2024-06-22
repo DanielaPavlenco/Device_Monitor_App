@@ -30,7 +30,7 @@ import java.io.Serializable
 import java.util.*
 
 class AppManagementFragment : Fragment() {
-
+//Declaratii pentru elementele de UI și de listele de aplicatii
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var searchView: SearchView
@@ -41,12 +41,14 @@ class AppManagementFragment : Fragment() {
     private var currentFilter: String = "all"
     private var isSortAscending: Boolean = true
 
+    //Metoda onCreateView este apelată pentru a crea și configura UI-ul fragmentului
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_app_management, container, false)
 
+        //Inițializarea e3lementelor de UI
         recyclerView = view.findViewById(R.id.appsManagerRecyclerView)
         swipeRefreshLayout = view.findViewById(R.id.appsManagerSwipeLayout)
         searchView = view.findViewById(R.id.search_view)
@@ -57,29 +59,31 @@ class AppManagementFragment : Fragment() {
             sortAppsBySize(isSortAscending)
         }
 
-        // Check and set the background drawable based on the dark mode setting
+        // Verificarea modului dark si setarea imaginii de fundal corespunzatoare
         val uiModeManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         val isNightMode = uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
 
         val root = view.findViewById<androidx.coordinatorlayout.widget.CoordinatorLayout>(R.id.appsManagerCl)
 
         if (isNightMode) {
-            root.setBackgroundResource(R.drawable.night2) // Replace with your night mode drawable
+            root.setBackgroundResource(R.drawable.night2) // Inlocuieste cu drawable-ul tau pentru modul dark
         } else {
-            root.setBackgroundResource(R.drawable.bg2) // Replace with your day mode drawable
+            root.setBackgroundResource(R.drawable.bg2) // Inlocuieste cu drawable-ul tau pentru modul zi
         }
 
-
+        //Configurarea RecycleView, SwipeRefreshLayout, SearchView șo RadioGroup
         setUpRecyclerView()
         setUpSwipeRefreshLayout()
         setUpSearchView()
         setUpFilterGroup()
 
+        //Încarcarea aplicațiilor instalate
         loadInstalledApps()
 
         return view
     }
 
+    //Configurarea RecycleView
     private fun setUpRecyclerView() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -88,6 +92,7 @@ class AppManagementFragment : Fragment() {
         recyclerView.adapter = appsAdapter
     }
 
+    //Configurarea SwipeRefreshLayout
     private fun setUpSwipeRefreshLayout() {
         val typedValueAccent = TypedValue()
         requireContext().theme.resolveAttribute(R.attr.colorAccent, typedValueAccent, true)
@@ -95,6 +100,7 @@ class AppManagementFragment : Fragment() {
         swipeRefreshLayout.setOnRefreshListener { refreshList(currentFilter) }
     }
 
+    //Configurarea SearchView
     private fun setUpSearchView() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -109,6 +115,7 @@ class AppManagementFragment : Fragment() {
         })
     }
 
+    //Configurarea RadioGroup pentru filtrare
     private fun setUpFilterGroup() {
         filterGroup.setOnCheckedChangeListener { _, checkedId ->
             currentFilter = when (checkedId) {
@@ -121,6 +128,7 @@ class AppManagementFragment : Fragment() {
         }
     }
 
+    //Sortarea aplicațiilor dupa dimensiune
     private fun sortAppsBySize(ascending: Boolean) {
         if (ascending) {
             filteredAppsList.sortBy { it.size }
@@ -130,7 +138,7 @@ class AppManagementFragment : Fragment() {
         appsAdapter.notifyDataSetChanged()
     }
 
-
+    //Incarcarea aplicațiilor instalate pe dispozitiv
     private fun loadInstalledApps() {
         swipeRefreshLayout.isRefreshing = true
         lifecycleScope.launch(Dispatchers.IO) {
@@ -156,6 +164,7 @@ class AppManagementFragment : Fragment() {
         }
     }
 
+    //Reimprospatarea listei de aplicatii in functie de filtru
     private fun refreshList(filterMode: String) {
         swipeRefreshLayout.isRefreshing = true
         lifecycleScope.launch(Dispatchers.IO) {
@@ -190,6 +199,7 @@ class AppManagementFragment : Fragment() {
     }
 
 
+    //Obtinerea dimensiunii aplicatiei
     private fun getAppSize(packageName: String): Long {
         val pm = requireContext().packageManager
         return try {
@@ -202,6 +212,7 @@ class AppManagementFragment : Fragment() {
         }
     }
 
+    //Filtrarea aplicatiilor in functie de quer-ul de cautare
     private fun filterApps(query: String) {
         filteredAppsList.clear()
         filteredAppsList.addAll(appsList.filter {
@@ -210,6 +221,7 @@ class AppManagementFragment : Fragment() {
         appsAdapter.notifyDataSetChanged()
     }
 
+    //Dezinstalarea unei aplicatii
     private fun uninstallApp(app: App) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.warning))
@@ -223,6 +235,7 @@ class AppManagementFragment : Fragment() {
             .show()
     }
 
+    //Definirea clasei de date pentru aplicatii
     private data class App(
         val label: String,
         val packageName: String,
@@ -232,6 +245,7 @@ class AppManagementFragment : Fragment() {
         val size: Long
     ) : Serializable
 
+    //Adaptor pentru RecycleView
     private inner class AppsAdapter(
         private val context: Context,
         private val dataSet: MutableList<App>
@@ -247,11 +261,13 @@ class AppManagementFragment : Fragment() {
             val itemLayout: RelativeLayout = view.findViewById(R.id.app_root_layout)
         }
 
+        //Crearea ViewHolder-ului pentru fiecare element din lista
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(context).inflate(R.layout.list_item_apps_manager, parent, false)
             return ViewHolder(view)
         }
 
+        //Legarea datelor de elementele din ViewHolder
         @SuppressLint("SetTextI18n")
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val app = dataSet[position]
@@ -269,6 +285,7 @@ class AppManagementFragment : Fragment() {
             }
         }
 
+        //Afisarea unui meniu popup pentru acțiuni pe aplicatie
         private fun showPopupMenu(view: View, app: App) {
             val popupMenu = PopupMenu(context, view)
             popupMenu.inflate(R.menu.app_management_menu)
@@ -292,6 +309,7 @@ class AppManagementFragment : Fragment() {
             popupMenu.show()
         }
 
+        //Obtinerea numarului de elemente din lista
         override fun getItemCount(): Int = dataSet.size
 
         private fun formatFileSize(size: Long): String {
@@ -305,6 +323,7 @@ class AppManagementFragment : Fragment() {
         }
     }
 
+    //Activarea unui pachet (aplicatie)
     private fun enablePackage(packageName: String) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -330,6 +349,7 @@ class AppManagementFragment : Fragment() {
         }
     }
 
+    //Dezactivarea pachetului (aplicatie)
     private fun disablePackage(packageName: String) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.warning))
