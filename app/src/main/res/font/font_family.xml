@@ -4,5 +4,6 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/freeman" />
+
     <!-- Adaugă alte stiluri aici, dacă este necesar -->
 </font-family>
