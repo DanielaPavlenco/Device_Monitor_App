@@ -26,14 +26,14 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Hide the toolbar during the splash screen
+        // Ascunderea toolbar-ului in timpul afisarii Splash Screen
         (activity as? MainActivity)?.hideToolbar()
 
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_initialFragment)
-            // Show the toolbar after navigating away from the splash screen
+            // Afisarea toolbar-ului dupa navigarea de splash screen
             (activity as? MainActivity)?.showToolbar()
-        }, 3000) // Delay for 3 seconds
+        }, 3000) // Delay de 3 secunde
     }
 
     override fun onDestroyView() {
