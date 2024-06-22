@@ -33,7 +33,7 @@ class MemoryFragment : Fragment() {
     private var _binding: FragmentMemoryBinding? = null
     private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
-    private val updateInterval = 1000L // 1 second
+    private val updateInterval = 1000L // 1 secunda
     private val memoryUsageEntries = ArrayList<Entry>()
     private var memoryUsageEntryCount = 0
     private var maxMemory = 0L
@@ -56,7 +56,7 @@ class MemoryFragment : Fragment() {
             binding.root.setBackgroundResource(R.drawable.bg1) // Replace with your day mode drawable
         }
 
-        // Start updating memory info
+        // Incepe sa se actualizeze memoria
         updateMemoryInfo()
 
         // Set click listeners for the clear background apps buttons
