@@ -48,7 +48,7 @@ class CpuFragment : Fragment() {
         _binding = FragmentCpuBinding.inflate(inflater, container, false)
 
 
-        // Setup governor spinner
+        // Seteaza optiunile pentru spinner-ul governator
         val governorOptions = resources.getStringArray(R.array.governor_options)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, governorOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -60,21 +60,22 @@ class CpuFragment : Fragment() {
             )
         }
 
-        // Check and set the background drawable based on the dark mode setting
+        // Verificarea și seteaza drawable-ul de fundal in functie de setarea modului intunecat
         val uiModeManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         val isNightMode = uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES
 
         if (isNightMode) {
-            binding.root.setBackgroundResource(R.drawable.night2) // Replace with your night mode drawable
+            binding.root.setBackgroundResource(R.drawable.night2) // Inlocuieste cu drawable-ul pentru modul noapte
         } else {
-            binding.root.setBackgroundResource(R.drawable.bg2) // Replace with your day mode drawable
+            binding.root.setBackgroundResource(R.drawable.bg2) // Inlocuieste cu drawable-ul pentru modul zi
         }
 
-        // Start updating CPU info
+        // Porneste actualizarea informatiilor CPU
         updateCpuInfo()
         return binding.root
     }
 
+    //Actualizeaza informatiile despre CPU
     private fun updateCpuInfo() {
         handler.postDelayed({
             GlobalScope.launch(Dispatchers.IO) {
@@ -97,13 +98,14 @@ class CpuFragment : Fragment() {
                 }
             }
 
-            // Continue updating only if the fragment is still in view
+            // Continua actualizarea doar daca fragmentul este inca in vizualizare
             if (_binding != null) {
                 updateCpuInfo()
             }
         }, updateInterval)
     }
 
+    //Actualizeaza informatiile despre utilizarea nucleelor CPU
     private fun updateCoresInfo(coreUsages: List<Int>) {
         _binding?.let { binding ->
             binding.coresContainer.removeAllViews()
@@ -114,6 +116,7 @@ class CpuFragment : Fragment() {
         }
     }
 
+    //Afiseaza un popup de informatii
     private fun showInfoPopup(title: String, content: String) {
         AlertDialog.Builder(requireContext())
             .setTitle(title)
@@ -125,6 +128,7 @@ class CpuFragment : Fragment() {
             .show()
     }
 
+    //Creeaza o vizualizare pentru utilizarea unui nucleu CPU
     private fun createCoreUsageView(coreNumber: Int, usage: Int): View {
         val coreView = LinearLayout(context).apply {
             orientation = LinearLayout.HORIZONTAL
@@ -163,6 +167,7 @@ class CpuFragment : Fragment() {
         return coreView
     }
 
+    //Obtine numele CPU
     private suspend fun getCpuName(): String = withContext(Dispatchers.Default) {
         val rootCpuInfoModel = RootUtils.executeWithOutput("cat /proc/cpuinfo | grep 'model name' | head -n 1 | cut -d: -f2").trim()
         if (rootCpuInfoModel.isNotEmpty()) {
@@ -172,11 +177,13 @@ class CpuFragment : Fragment() {
         return@withContext if (cpuInfoModel.isNotEmpty()) cpuInfoModel else Build.HARDWARE
     }
 
+    //Obtine modelul CPU
     private suspend fun getCpuModel(): String = withContext(Dispatchers.Default) {
         val cpuInfoModel = Utils.runCommand("getprop ro.product.model\n", "")
         return@withContext if (cpuInfoModel.isEmpty()) "Unknown" else cpuInfoModel.trim()
     }
 
+    //Obtine temperatura CPU
     private fun getCpuTemperature(): Float {
         return try {
             val temp = RandomAccessFile("/sys/class/thermal/thermal_zone0/temp", "r").use { it.readLine().toFloat() }
@@ -187,6 +194,7 @@ class CpuFragment : Fragment() {
         }
     }
 
+    //Obtine frecventa CPU
     private fun getCpuFrequency(): String {
         return try {
             val freqStr = RandomAccessFile("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", "r").use { it.readLine() }
@@ -203,6 +211,7 @@ class CpuFragment : Fragment() {
         }
     }
 
+    //Obtine utilizarea nucleelor CPU
     private fun getCoreUsages(): List<Int> {
         return try {
             val coreUsages = mutableListOf<Int>()
@@ -222,10 +231,12 @@ class CpuFragment : Fragment() {
         }
     }
 
+    //Obtine numarul de nuclee CPU
     private fun getNumberOfCores(): Int {
         return Runtime.getRuntime().availableProcessors()
     }
 
+    //Obtine frecventa curenta a unui nucleu CPU
     private fun getCurrentFreq(coreNumber: Int): Int {
         val currentFreqPath = "/sys/devices/system/cpu/cpu$coreNumber/cpufreq/scaling_cur_freq"
         return try {
@@ -236,6 +247,7 @@ class CpuFragment : Fragment() {
         }
     }
 
+    //Actualizarea graficului utilizarii CPU
     private fun updateCpuUsageChart(cpuUsageChart: LineChart, coreUsages: List<Int>) {
         _binding?.let {
             cpuUsageEntries.add(Entry(cpuUsageEntryCount.toFloat(), coreUsages.average().toFloat()))
@@ -245,10 +257,11 @@ class CpuFragment : Fragment() {
             val lineData = LineData(dataSet)
             cpuUsageChart.data = lineData
             cpuUsageChart.description.text = "Hz"
-            cpuUsageChart.invalidate() // Refresh chart
+            cpuUsageChart.invalidate() // Reimprospatarea graficului
         }
     }
 
+    //Seteaza governator-ul CPU
     private fun setCpuGovernor(governor: String) {
         GlobalScope.launch(Dispatchers.IO) {
             RootUtils.executeAsync("chmod +w /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor && echo '$governor' > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor")
@@ -258,6 +271,7 @@ class CpuFragment : Fragment() {
         }
     }
 
+    //Curata legaturile la UI cand fragmentul este distrus
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
